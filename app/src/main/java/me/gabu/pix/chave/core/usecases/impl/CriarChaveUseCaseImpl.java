@@ -22,6 +22,7 @@ public class CriarChaveUseCaseImpl implements CriarChaveUseCase {
     public Chave run(Chave chave, String usuario) {
         log.info("[USECASE] [CREATE] {}", chave);
         validator.validate(chave, ValidationEnum.CREATE);
+
         chave.setUsuarioCriacao(usuario);
         return dao.save(chave);
     }

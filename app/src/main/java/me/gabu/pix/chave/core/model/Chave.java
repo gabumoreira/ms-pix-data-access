@@ -1,6 +1,7 @@
 package me.gabu.pix.chave.core.model;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.validation.constraints.Digits;
@@ -9,18 +10,14 @@ import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import me.gabu.pix.chave.service.validations.Create;
 import me.gabu.pix.chave.service.validations.Update;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class Chave extends Auditoria {
+public class Chave {
 
     private static final String MSG_NULO = "não deve ser nulo";
     private static final String MSG_RANGE = "tem um limite de digitos";
@@ -29,13 +26,13 @@ public class Chave extends Auditoria {
     private UUID id;
 
     @NotNull(groups = { Update.class, Create.class }, message = MSG_NULO)
-    private String chave;
+    private String valorChave;
 
     @NotNull(groups = { Update.class, Create.class }, message = MSG_NULO)
     private TipoChave tipoChave;
 
     @NotNull(groups = { Update.class, Create.class }, message = MSG_NULO)
-    private TipoChave tipoConta;
+    private TipoConta tipoConta;
 
     @NotNull(groups = Update.class, message = MSG_NULO)
     @Digits(groups = { Update.class, Create.class }, integer = 4, message = MSG_RANGE, fraction = 0)
@@ -50,4 +47,9 @@ public class Chave extends Auditoria {
     private String sobrenome;
 
     private boolean habilitada;
+
+    protected LocalDate dataCriacao;
+    protected LocalDate dataAlteracao;
+    protected String usuarioCriacao;
+    protected String usuarioAlteracao;
 }

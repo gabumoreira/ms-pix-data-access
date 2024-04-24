@@ -25,11 +25,12 @@ public class AtualizarChaveUseCaseImpl implements AtualizarChaveUseCase {
         final var registroAnterior = consultarUC.run(chave.getId());
 
         validator.validate(chave, ValidationEnum.UPDATE);
+
         log.info("[USECASE] [UPDATE]\nRegistro anterior: {} \nRegistro recebido: {}", registroAnterior, chave);
 
         chave.setId(registroAnterior.getId());
         chave.setTipoChave(registroAnterior.getTipoChave());
-        chave.setChave(registroAnterior.getChave());
+        chave.setValorChave(registroAnterior.getValorChave());
         chave.setUsuarioAlteracao(usuario);
         chave.setUsuarioCriacao(registroAnterior.getUsuarioCriacao());
         chave.setDataCriacao(registroAnterior.getDataCriacao());

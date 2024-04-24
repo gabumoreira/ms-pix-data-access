@@ -1,5 +1,6 @@
 package me.gabu.pix.chave.core.usecases.impl;
 
+import java.math.BigInteger;
 import java.util.Collection;
 
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class ListarchaveUseCaseImpl implements ListarChaveUseCase {
             return dao.findByNome(nome);
 
         return dao.listAll();
+    }
+
+    @Override
+    public Collection<Chave> run(BigInteger agencia, BigInteger conta) {
+        return dao.listByAgenciaConta(agencia, conta);
     }
 
 }

@@ -1,5 +1,6 @@
 package me.gabu.pix.chave.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import org.springframework.util.CollectionUtils;
 import lombok.AllArgsConstructor;
 import me.gabu.pix.chave.core.exceptions.UnprocessableEntityException;
 import me.gabu.pix.chave.core.model.Chave;
+import me.gabu.pix.chave.core.usecases.strategy.ChaveStrategy;
 import me.gabu.pix.chave.service.ValidationService;
 import me.gabu.pix.chave.service.validations.Create;
 import me.gabu.pix.chave.service.validations.Update;
@@ -24,9 +26,15 @@ import me.gabu.pix.chave.service.validations.ValidationEnum;
 public class ValidationServiceImpl implements ValidationService {
 
     private final Validator validator;
+    private final Collection<ChaveStrategy> strategies;
 
     @Override
     public void validate(Chave chave, ValidationEnum validation) {
+
+        strategies.stream()
+            .filter(s -> s.match(chave.getTipoChave()))
+            .findFirst().orElseThrow(()-> new UnprocessableEntityException("Tipo de chave não implementada"))
+            .validate(chave);
 
         Set<ConstraintViolation<Chave>> contraints = getContraints(chave, validation);
 

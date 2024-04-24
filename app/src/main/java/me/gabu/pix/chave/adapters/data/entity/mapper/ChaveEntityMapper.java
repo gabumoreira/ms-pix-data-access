@@ -13,12 +13,12 @@ public interface ChaveEntityMapper {
 
     ChaveEntityMapper INSTANCE = Mappers.getMapper(ChaveEntityMapper.class);
 
-    ChaveEntity chaveToChaveEntity(Chave chave);
+    ChaveEntity modelToEntity(Chave chave);
 
-    Chave chaveEntityToChave(ChaveEntity chaveEntity);
+    Chave entityToModel(ChaveEntity chaveEntity);
 
-    Collection<ChaveEntity> chaveToChaveEntity(Collection<Chave> chave);
+    Collection<ChaveEntity> modelToEntity(Collection<Chave> chave);
 
-    Collection<Chave> chaveEntityToChave(Collection<ChaveEntity> chaveEntity);
+    Collection<Chave> entityToModel(Collection<ChaveEntity> chaveEntity);
 
 }

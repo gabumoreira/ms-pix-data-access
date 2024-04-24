@@ -2,11 +2,11 @@ package me.gabu.pix.chave.core.usecases.strategy;
 
 import java.util.InputMismatchException;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import me.gabu.pix.chave.core.model.TipoChave;
 
-@Service
+@Component
 public class CPFStrategy implements ChaveStrategy {
 
     @Override

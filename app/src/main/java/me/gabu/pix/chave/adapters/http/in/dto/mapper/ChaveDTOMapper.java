@@ -4,10 +4,12 @@ import java.util.Collection;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import me.gabu.pix.chave.adapters.http.in.dto.ChaveDTO;
 import me.gabu.pix.chave.core.model.Chave;
 
+@Component
 @Mapper
 public interface ChaveDTOMapper {
 

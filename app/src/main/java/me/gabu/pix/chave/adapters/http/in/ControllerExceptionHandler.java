@@ -16,6 +16,7 @@ import me.gabu.pix.chave.core.exceptions.AccessException;
 import me.gabu.pix.chave.core.exceptions.BadRequestException;
 import me.gabu.pix.chave.core.exceptions.ErrorData;
 import me.gabu.pix.chave.core.exceptions.NotFoundException;
+import me.gabu.pix.chave.core.exceptions.UnprocessableEntityException;
 
 @Slf4j
 @ControllerAdvice
@@ -29,6 +30,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
     public final ResponseEntity<ErrorData> handleBadRequestException(BadRequestException ex, WebRequest request) {
         return buildErrorData(ex, ex.getMessages(), HttpStatus.BAD_REQUEST, request);
+    }
+
+
+    @ExceptionHandler(UnprocessableEntityException.class)
+    public final ResponseEntity<ErrorData> handleBadRequestException(UnprocessableEntityException ex, WebRequest request) {
+        return buildErrorData(ex, ex.getMessages(), HttpStatus.UNPROCESSABLE_ENTITY, request);
     }
 
     @ExceptionHandler(AccessException.class)

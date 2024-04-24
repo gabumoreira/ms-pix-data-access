@@ -20,4 +20,9 @@ public class ConsultarChaveUseCaseImpl implements ConsultarChaveUseCase {
         return dao.findById(chaveId);
     }
 
+    @Override
+    public Chave run(String valorChave) {
+        return dao.findByValorChave(valorChave);
+    }
+
 }

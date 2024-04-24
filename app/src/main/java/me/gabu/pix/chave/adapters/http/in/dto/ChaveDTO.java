@@ -8,14 +8,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 import me.gabu.pix.chave.core.model.TipoChave;
+import me.gabu.pix.chave.core.model.TipoConta;
 
-@Getter
-@Setter
-@ToString
+@Data
 @ApiModel("Chave")
 public class ChaveDTO {
 
@@ -25,9 +22,9 @@ public class ChaveDTO {
     @ApiModelProperty("Tipo de chave")
     private TipoChave tipoChave;
     @ApiModelProperty("Tipo da conta da chave")
-    private TipoChave tipoConta;
+    private TipoConta tipoConta;
     @ApiModelProperty("Valor da chave")
-    private String chave;
+    private String valorChave;
 
     @ApiModelProperty("Agencia da chave (até 4 digitos)")
     private BigInteger agencia;
@@ -45,10 +42,13 @@ public class ChaveDTO {
     private String usuarioAlteracao;
 
     @ApiModelProperty("Data do cadastro do chave no sistema")
-    private @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDate dataCriacao;
+    @JsonFormat(pattern = "yyyy-MM-dd") 
+    private LocalDate dataCriacao;
+
     @ApiModelProperty("Data da ultima alteração do chave no sistema")
-    private @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss") LocalDate dataAlteracao;
+    @JsonFormat(pattern = "yyyy-MM-dd") 
+    private LocalDate dataAlteracao;
 
     @ApiModelProperty("Indicador se a chave esta habilitada ou não")
-    private boolean habilitada;
+    private boolean habilitada = true;
 }

@@ -1,12 +1,10 @@
 package me.gabu.pix.chave.core.usecases.strategy;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import lombok.AllArgsConstructor;
 import me.gabu.pix.chave.core.model.TipoChave;
 
-@Service
-@AllArgsConstructor
+@Component
 public class CelularStrategy implements ChaveStrategy {
 
     @Override

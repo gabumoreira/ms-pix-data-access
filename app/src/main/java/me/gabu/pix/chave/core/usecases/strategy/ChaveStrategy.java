@@ -18,16 +18,16 @@ public interface ChaveStrategy {
 
     public default void validate(Chave chave) throws UnprocessableEntityException {
         final var pattern = Pattern.compile(getRegex());
-        final var matcher = pattern.matcher(chave.getChave());
+        final var matcher = pattern.matcher(chave.getValorChave());
 
         if (!matcher.matches())
-            throw new UnprocessableEntityException("[" + chave.getChave() + "] não atende o padrão de [" + chave.getTipoChave() + "] ");
+            throw new UnprocessableEntityException("[" + chave.getValorChave() + "] não atende o padrão de [" + chave.getTipoChave() + "] ");
 
-        if (chave.getChave().length() > getLimite())
-            throw new UnprocessableEntityException("[" + chave.getChave() + "] maior que o limite de [" + getLimite() + "] ");
+        if (chave.getValorChave().length() > getLimite())
+            throw new UnprocessableEntityException("[" + chave.getValorChave() + "] maior que o limite de [" + getLimite() + "] ");
 
-        if (Boolean.FALSE.equals(validate(chave.getChave())))
-            throw new UnprocessableEntityException("[" + chave.getChave() + "] não atende o padrão de [" + chave.getTipoChave() + "] ");
+        if (Boolean.FALSE.equals(validate(chave.getValorChave())))
+            throw new UnprocessableEntityException("[" + chave.getValorChave() + "] não atende o padrão de [" + chave.getTipoChave() + "] ");
     }
 
 }
